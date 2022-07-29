@@ -14,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::get("product-list",[\App\Http\Controllers\ProductsController::class,"index"]);
+
+Route::post("place-order",[\App\Http\Controllers\OrderController::class,'deferredPaymentOrder']);
+
+Route::middleware('auth:sanctum')->group(function (){
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::post("product",[\App\Http\Controllers\ProductsController::class,'store']);
+    Route::post("product/{product}",[\App\Http\Controllers\ProductsController::class,'update']);
+    Route::delete("product/{product}",[\App\Http\Controllers\ProductsController::class,'destroy']);
+    Route::get("my-product-list",[\App\Http\Controllers\ProductsController::class,"userIndex"]);
+    Route::get("my-orders-list",[\App\Http\Controllers\OrderController::class,"viewMyOrders"]);
+
+
 });

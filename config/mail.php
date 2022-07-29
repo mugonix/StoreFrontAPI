@@ -57,6 +57,10 @@ return [
             'transport' => 'postmark',
         ],
 
+        'sparkpost' => [
+            'transport' => 'sparkpost'
+        ],
+
         'sendmail' => [
             'transport' => 'sendmail',
             'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -t -i'),
